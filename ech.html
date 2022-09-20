@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/echarts.js"></script>
+    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="width: 100%;height:100vh;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            series: [
+                {
+                    name: 'Area Mode',
+                    type: 'pie',
+                    radius: ['20%', '60%'],
+                    center: ['50%', '60%'],
+                    roseType: 'radius',
+                    data: [
+                        { value: 30, name: 'rose 1' },
+                        { value: 28, name: 'rose 2' },
+                        { value: 26, name: 'rose 3' },
+                        { value: 24, name: 'rose 4' },
+                        { value: 22, name: 'rose 5' },
+                        { value: 20, name: 'rose 6' },
+                        { value: 18, name: 'rose 7' },
+                        { value: 16, name: 'rose 8' }
+                    ],
+                    label: {
+                        fontSize: 10,
+                    },
+                    labelLine: {
+                        length: 6,
+                        length2: 8,
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        let browserWidth, browserHeight;
+        window.addEventListener("load", (ev) => {
+            console.log("浏览器高度", window.outerHeight, "浏览器宽度", window.outerWidth);
+            browserWidth = window.outerWidth;
+            browserHeight = window.outerHeight;
+        })
+        //当浏览器缩放时，图标也要等比例缩放
+        window.addEventListener("resize", (ev) => {
+            //让我们图表使用这个方法
+            let currentWidth = ev.currentTarget.innerWidth;
+            let currentHeight = ev.currentTarget.innerHeight;
+            let widthProportion = currentWidth / browserWidth;
+            let heightProportion = currentHeight / browserHeight;
+            let finalProportion = widthProportion < heightProportion ? widthProportion : heightProportion;
+            console.log(widthProportion, heightProportion, finalProportion);
+            // myChart.resize({
+            //     width: 600 * finalProportion,
+            //     height: 400 * finalProportion
+            // });
+            myChart.resize();
+        })
+
+
+    </script>
+    <style>
+        @media screen and (max-width:1024px) {
+            html {
+                font-size: 42.66px !important;
+            }
+        }
+
+        @media screen and (mix-width:1920px) {
+            html {
+                font-size: 80px !important;
+            }
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+
+            /* background-color: black; */
+        }
+
+        .panel {
+            width: 100%;
+            height: 100%;
+            /* border: 2px solid red; */
+            /* border-width: .125rem .125rem .125rem .125rem; */
+            /* border-image-source: url(./img/bg.png); */
+            /* border-image-slice: 10 10 10 10; */
+            box-sizing: border-box;
+        }
+
+        .model {
+            /* height: 4rem; */
+        }
+    </style>
+</body>
+
+</html>

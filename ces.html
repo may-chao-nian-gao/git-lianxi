@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <div id="data-rh-body" class="data-lf-top"></div>
+    </div>
+</body>
+<script>
+    var echarts = require('echarts')
+    export default {
+        methods: {
+            drawChart2() {
+                // 基于准备好的dom，初始化echarts实例
+                let myChart = this.$echarts.init(document.getElementById('data-rh-body'));
+                // 指定图表的配置项和数据
+                let option = {
+                    grid: {
+                        //坐标系地板的定位
+                        left: 60,
+                        bottom: 50
+                    },
+                    xAxis: {
+                        type: 'category', //类名轴
+                        data: ['5', '6', '7', '8', '9', '10'],
+                        axisLine: {//坐标轴轴线相关设置
+
+                            lineStyle: {
+                                color: '#262571'//x轴线颜色设置
+                            }
+                        },
+                        axisLabel: {// 坐标轴刻度标签的相关设置
+                            show: true,//控制显隐
+                            textStyle: {
+                                color: '#6FCEFF',//x轴字体颜色
+                                fontSize: 20 // 
+                            }
+                        },
+                        axisTick: {
+                            //x轴刻度相关设置
+                            show: false
+                        }
+                    },
+                    yAxis: {
+                        axisLine: {
+                            //坐标轴轴线相关设置
+                            lineStyle: {
+                                color: '#262571'
+                            }
+                        },
+                        axisLabel: {//坐标轴刻度标签的相关设置
+                            textStyle: {//y轴字体样式设置
+                                color: '#CFD4EB',
+                                fontSize: 20
+                            }
+                        },
+                        axisTick: {
+                            //y轴刻度相关设置
+                            show: false
+                        },
+                        splitLine: {//坐标轴在 grid 区域中的分隔线相关设置
+                            lineStyle: {//线的样式设置
+                                color: '#262571'
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: '数量',
+                            type: 'bar',
+                            data: [50, 125, 10, 50, 30, 15],
+                            barWidth: 28, //柱图宽度
+                            itemStyle: {//图形样式相关设置
+                                normal: {
+                                    //自定义柱形渐变色
+                                    color: new echarts.graphic.LinearGradient(
+                                        0,
+                                        1,
+                                        0,
+                                        0,
+                                        [
+                                            {
+                                                offset: 0,
+                                                color: '#63FFFF' // 0% 处的颜色
+                                            },
+                                            {
+                                                offset: 1,
+                                                color: '#0054FF' // 100% 处的颜色
+                                            }
+                                        ],
+                                        false
+                                    ),
+                                }
+                            }
+
+                        }
+                    ]
+                };
+                // 使用刚指定的配置项和数据显示图表。
+                window.onresize = function () {
+                    //自适应大小, 不用的话不会自适应大小。
+                    myChart.resize();
+                };
+                // myChart.setOption(option);
+                // window.addEventListener("resize", () => {
+                //       if(myChart){
+                // 		  myChart.resize()
+                // 	  }
+                // })
+                // window.onresize = myChart.resize;
+            },
+        },
+        mounted() {
+            this.drawChart2()
+        }
+    }
+</script>
+
+<style scoped>
+    .app {
+        width: 50%;
+        height: 500px;
+        background: #000000;
+        margin: auto;
+    }
+
+    #data-rh-body {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+</html>

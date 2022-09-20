@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/index.js"></script>
+    <script src="./js/echarts.js"></script>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/indax.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Document</title>
+</head>
+
+<style>
+    @media screen and (max-width:1024px){
+        html{
+            font-size: 42.66px !important;
+        }
+    }
+    @media screen and (mix-width:1920px){
+        html{
+            font-size: 80px !important;
+        }
+    }
+    body{
+        background-color: black;
+    }
+    .panel{
+        width: 4rem;
+        border: 2px solid red;
+        border-width: .125rem .125rem .125rem .125rem;
+        border-image-source: url(./img/bg.png);
+        border-image-slice: 10 10 10 10;  
+    }
+    .model{
+        height: 1.25rem;
+    }
+</style>
+<body>
+    <!-- <div class="panel model">
+        <h3 style="color: #fff;">饼状图</h3> -->
+        <div id="main" style="width: 600px;height:400px;"></div>
+    <!-- </div> -->
+</body>
+</html> 
